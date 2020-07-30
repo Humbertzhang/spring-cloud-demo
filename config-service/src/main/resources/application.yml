@@ -1,0 +1,24 @@
+#https://www.jianshu.com/p/c955c44ae534
+# application.yml与bootstrap.yml的区别
+server:
+  port: 4001
+spring:
+  application:
+    name: config-service
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:config/inventory-service,
+                            classpath:config/price-service,
+                            classpath:config/order-service
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:4002/eureka/

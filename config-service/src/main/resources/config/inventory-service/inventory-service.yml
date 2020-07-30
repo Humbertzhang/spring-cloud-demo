@@ -1,0 +1,12 @@
+inventoryconfig:
+  inventories:
+    - name: gtx1070
+      count: 5
+    - name: gtx1080
+      count: 5
+    - name: rtx2080
+      count: 3
+    - name: rx5600
+      count: 5
+    - name: rx5700
+      count: 5

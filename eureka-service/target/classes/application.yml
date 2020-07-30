@@ -1,0 +1,13 @@
+server:
+  port: 4002
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  server:
+    maxThreadsForPeerReplication: 0
+    wait-time-in-ms-when-sync-empty: 0
+  serviceUrl:
+    defaultZone: http://localhost:4002
+

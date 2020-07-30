@@ -1,0 +1,12 @@
+priceconfig:
+  prices:
+    - name: gtx1070
+      price: 200
+    - name: gtx1080
+      price: 300
+    - name: rtx2080
+      price: 500
+    - name: rx5600
+      price: 200
+    - name: rx5700
+      price: 300

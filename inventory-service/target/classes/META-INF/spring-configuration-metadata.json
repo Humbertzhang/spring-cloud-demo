@@ -1,0 +1,20 @@
+{
+  "groups": [{
+    "name": "inventoryconfig",
+    "type": "com.buygoods.inventoryservice.services.InventoryService",
+    "sourceType": "com.buygoods.inventoryservice.services.InventoryService"
+  }],
+  "properties": [
+    {
+      "name": "inventoryconfig.inventories",
+      "type": "java.util.List<com.buygoods.inventoryservice.models.Inventory>",
+      "sourceType": "com.buygoods.inventoryservice.services.InventoryService"
+    },
+    {
+      "name": "inventoryconfig.inventory-pairs",
+      "type": "java.util.Map<java.lang.String,java.lang.Integer>",
+      "sourceType": "com.buygoods.inventoryservice.services.InventoryService"
+    }
+  ],
+  "hints": []
+}
