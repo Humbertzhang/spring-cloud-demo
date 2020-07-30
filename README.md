@@ -63,6 +63,7 @@ Response Example:
 
 
 * 获取价格列表
+
 | Methods | URL | 
 | --- | --- |
 | GET | http://localhost:4003/v1/prices/ |
@@ -79,6 +80,7 @@ Responses:
 ```
 
 * 获取库存列表
+
 | Methods | URL | 
 | --- | --- |
 | GET | http://localhost:4004/v1/inventory/ |
