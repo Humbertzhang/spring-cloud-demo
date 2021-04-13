@@ -1,7 +1,9 @@
 # spring-cloud-demo
-My Spring Cloud demo
+A Spring Cloud demo
 
 本demo需要本地拥有JDK 1.8以及Maven环境方可运行。
+
+## Demo介绍
 
 使用的SpringCloud能力:
 * Spring Cloud Config 
@@ -25,9 +27,13 @@ services:
 * order-service: port 4005 | 订购服务。接受订购产品类目，返回价格。
 ```
 
+**编译**
+
 在 ` spring-cloud-demo` 文件夹中运行 `mvn clean package`对所有服务进行编译.
 
-启动顺序:
+
+**启动顺序**
+
 ```
 1. eureka-service
 2. config-service
@@ -40,7 +46,7 @@ services:
 
 ```
 
-APIs:
+**APIs**
 
 
 
@@ -106,13 +112,15 @@ Responses:
 }
 ```
 
----
 
 ## 试用客户端弹性容错相关功能
 
+注意更改代码后需要**重新编译** 
+
+
 * 断路器：
 尝试在 `inventory-service`服务的 `getInventoryPairs` 函数中加入一些sleep函数(已经准备好并注释掉了，可以直接取消注释即可试用)，使其运行时间超过`HystrixProperty` 中设定的超时时间。
-此时请求 `inventory-service` 的API，观察程序运行情况。
+此时请求 `inventory-service` 的API，观察程序运行与返回情况。
 
 * 后备处理:
 去掉 `inventory-service`服务的 `getInventoryPairs` 函数上 HystrixCommand 中对 `,fallbackMethod = "buildFallbackInventoryPairs"` 的注释，再次请求 `inventory-service` 的API，观察程序运行情况。
