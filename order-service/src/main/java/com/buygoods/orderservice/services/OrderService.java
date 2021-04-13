@@ -27,18 +27,19 @@ public class OrderService {
     InventoryFeignClient inventoryFeignClient;
 
     @HystrixCommand(fallbackMethod = "buildFallbackAmount",
-                    commandProperties = {
+                    //commandProperties = {
                     // 对超时时间进行配置
-                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",
-                            value = "1000")},
+                    //@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",
+                    //       value = "10000")},
+
                     // 舱壁模式，即针对这个API中的请求专门创建一个线程池，避免这个API中请求的东西太慢，导致整体的连接池中的线程都被占用。
                     threadPoolKey = "getOrderAmount",
                     threadPoolProperties = {
                         // 线程池中最大数量
-                        @HystrixProperty(name = "coreSize", value = "4"),
+                        @HystrixProperty(name = "coreSize", value = "1"),
                         // 在线程池前创建一个队列，在繁忙时最大堵塞的请求数量
                         // 当超过时会直接使用fallbackMethod，而不再等待
-                        @HystrixProperty(name = "maxQueueSize", value = "2")
+                        @HystrixProperty(name = "maxQueueSize", value = "1")
                     })
     public Amount getOrderAmount(Orders orders) {
         Map<String, Integer> prices = this.getPrices();

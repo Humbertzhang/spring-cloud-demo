@@ -22,3 +22,11 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:4002/eureka/
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000

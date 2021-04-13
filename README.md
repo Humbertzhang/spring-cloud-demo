@@ -1,5 +1,7 @@
 # spring-cloud-demo
-My Spring Cloud learning demo
+My Spring Cloud demo
+
+本demo需要本地拥有JDK 1.8以及Maven环境方可运行。
 
 使用的SpringCloud能力:
 * Spring Cloud Config 
@@ -23,15 +25,24 @@ services:
 * order-service: port 4005 | 订购服务。接受订购产品类目，返回价格。
 ```
 
+在 ` spring-cloud-demo` 文件夹中运行 `mvn clean package`对所有服务进行编译.
+
 启动顺序:
 ```
 1. eureka-service
 2. config-service
 3. price-service & inventory-service
 4. order-service
+
+注意开始测试前可能需要关闭**本地代理**
+注意应等待 eureka-service 启动成功后方可启动其他服务。
+且应等待config-service 启动成功后再启动price-service, inventory-service与order-service，因为后面三个服务需要从config中读取配置。
+
 ```
 
 APIs:
+
+
 
 * 获取订购物品价格
 
@@ -94,3 +105,20 @@ Responses:
     "rx5600": 5
 }
 ```
+
+---
+
+## 试用客户端弹性容错相关功能
+
+* 断路器：
+尝试在 `inventory-service`服务的 `getInventoryPairs` 函数中加入一些sleep函数(已经准备好并注释掉了，可以直接取消注释即可试用)，使其运行时间超过`HystrixProperty` 中设定的超时时间。
+此时请求 `inventory-service` 的API，观察程序运行情况。
+
+* 后备处理:
+去掉 `inventory-service`服务的 `getInventoryPairs` 函数上 HystrixCommand 中对 `,fallbackMethod = "buildFallbackInventoryPairs"` 的注释，再次请求 `inventory-service` 的API，观察程序运行情况。
+
+* 舱壁模式：
+保留 `inventory-service` 中的sleep。在设置的时间内快速请求数次`order service` ，达到舱壁模式中配置的阈值要求，观察系统返回值。
+因为`order service`中设置线程池中只有一个线程，且等待队列中最大为1，那么当第三次请求时，应当会快速失败，即立即使用fallback中的函数进行返回。
+
+* 结合[Hystrix文档](https://github.com/Netflix/Hystrix/wiki/Configuration) 与 [实践博客](https://zhenbianshu.github.io/2018/09/hystrix_configuration_analysis.html) 对其他参数进行探索.

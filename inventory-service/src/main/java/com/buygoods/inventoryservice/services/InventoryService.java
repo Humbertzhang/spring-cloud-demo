@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class InventoryService {
@@ -22,14 +23,26 @@ public class InventoryService {
     @HystrixCommand(commandProperties = {
             // 对超时时间进行配置
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",
-                    value = "1000")},
+                    value = "10000")}
             // 服务失败后的后备方法.
-            fallbackMethod = "buildFallbackInventoryPairs")
+            //,fallbackMethod = "buildFallbackInventoryPairs"
+            )
     public Map<String, Integer> getInventoryPairs() {
         Map<String, Integer> pairs = new HashMap<String, Integer>();
         for (Inventory i : this.config.getInventories()) {
             pairs.put(i.getName(), i.getCount());
         }
+
+        /*
+        try {
+            TimeUnit.MILLISECONDS.sleep(10000);
+        } catch (InterruptedException e) {
+            System.out.println("sleep 10000 ms");
+        }
+        */
+
+
+
         return pairs;
     }
 
