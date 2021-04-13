@@ -1,0 +1,5 @@
+/Users/apple/Code/microservice-demos/h10gdemos/spring-cloud-demo/price-service/src/main/java/com/buygoods/priceservice/models/Price.java
+/Users/apple/Code/microservice-demos/h10gdemos/spring-cloud-demo/price-service/src/main/java/com/buygoods/priceservice/controllers/PriceController.java
+/Users/apple/Code/microservice-demos/h10gdemos/spring-cloud-demo/price-service/src/main/java/com/buygoods/priceservice/services/PriceService.java
+/Users/apple/Code/microservice-demos/h10gdemos/spring-cloud-demo/price-service/src/main/java/com/buygoods/priceservice/config/ServiceConfig.java
+/Users/apple/Code/microservice-demos/h10gdemos/spring-cloud-demo/price-service/src/main/java/com/buygoods/priceservice/PriceServiceApplication.java

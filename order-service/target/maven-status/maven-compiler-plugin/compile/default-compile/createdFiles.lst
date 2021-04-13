@@ -1,0 +1,9 @@
+com/buygoods/orderservice/services/OrderService.class
+com/buygoods/orderservice/clients/PriceDiscoveryClient.class
+com/buygoods/orderservice/models/Amount.class
+com/buygoods/orderservice/clients/InventoryFeignClient.class
+com/buygoods/orderservice/models/Order.class
+com/buygoods/orderservice/OrderServiceApplication.class
+com/buygoods/orderservice/clients/PriceDiscoveryClient$1.class
+com/buygoods/orderservice/models/Orders.class
+com/buygoods/orderservice/controllers/OrderController.class

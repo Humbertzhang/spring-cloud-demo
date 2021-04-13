@@ -1,0 +1,6 @@
+META-INF/spring-configuration-metadata.json
+com/buygoods/inventoryservice/InventoryServiceApplication.class
+com/buygoods/inventoryservice/models/Inventory.class
+com/buygoods/inventoryservice/services/InventoryService.class
+com/buygoods/inventoryservice/config/ServiceConfig.class
+com/buygoods/inventoryservice/controllers/InventoryController.class

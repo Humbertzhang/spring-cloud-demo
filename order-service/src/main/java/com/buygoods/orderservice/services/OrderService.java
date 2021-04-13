@@ -6,6 +6,8 @@ import com.buygoods.orderservice.clients.PriceDiscoveryClient;
 import com.buygoods.orderservice.models.Amount;
 import com.buygoods.orderservice.models.Order;
 import com.buygoods.orderservice.models.Orders;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -24,13 +26,23 @@ public class OrderService {
     @Autowired
     InventoryFeignClient inventoryFeignClient;
 
+    @HystrixCommand(fallbackMethod = "buildFallbackAmount",
+                    commandProperties = {
+                    // 对超时时间进行配置
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",
+                            value = "1000")},
+                    // 舱壁模式，即针对这个API中的请求专门创建一个线程池，避免这个API中请求的东西太慢，导致整体的连接池中的线程都被占用。
+                    threadPoolKey = "getOrderAmount",
+                    threadPoolProperties = {
+                        // 线程池中最大数量
+                        @HystrixProperty(name = "coreSize", value = "4"),
+                        // 在线程池前创建一个队列，在繁忙时最大堵塞的请求数量
+                        // 当超过时会直接使用fallbackMethod，而不再等待
+                        @HystrixProperty(name = "maxQueueSize", value = "2")
+                    })
     public Amount getOrderAmount(Orders orders) {
-        Map<String, Integer> prices = priceDiscoveryClient.getPricePairs();
-        Map<String, Integer> inventories = inventoryFeignClient.getInventory();
-
-        System.out.println(prices.toString());
-        System.out.println(inventories.toString());
-        // 0.TODO heck if the key of two map are same
+        Map<String, Integer> prices = this.getPrices();
+        Map<String, Integer> inventories = this.getInventory();
 
         Amount amount = new Amount(0.0);
         // < 1 means bad amount
@@ -56,5 +68,18 @@ public class OrderService {
         }
         amount.performAdjustment(adjustment);
         return amount;
+    }
+
+    public Map<String, Integer> getPrices() {
+        return priceDiscoveryClient.getPricePairs();
+    }
+
+    public Map<String, Integer> getInventory() {
+        return inventoryFeignClient.getInventory();
+    }
+
+    private Amount buildFallbackAmount(Orders orders) {
+        Amount badAmount = new Amount(-2.0);
+        return badAmount;
     }
 }

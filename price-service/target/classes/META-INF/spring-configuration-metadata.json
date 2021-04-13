@@ -1,20 +1,13 @@
 {
   "groups": [{
     "name": "priceconfig",
-    "type": "com.buygoods.priceservice.services.PriceService",
-    "sourceType": "com.buygoods.priceservice.services.PriceService"
+    "type": "com.buygoods.priceservice.config.ServiceConfig",
+    "sourceType": "com.buygoods.priceservice.config.ServiceConfig"
   }],
-  "properties": [
-    {
-      "name": "priceconfig.price-pairs",
-      "type": "java.util.Map<java.lang.String,java.lang.Integer>",
-      "sourceType": "com.buygoods.priceservice.services.PriceService"
-    },
-    {
-      "name": "priceconfig.prices",
-      "type": "java.util.List<com.buygoods.priceservice.models.Price>",
-      "sourceType": "com.buygoods.priceservice.services.PriceService"
-    }
-  ],
+  "properties": [{
+    "name": "priceconfig.prices",
+    "type": "java.util.List<com.buygoods.priceservice.models.Price>",
+    "sourceType": "com.buygoods.priceservice.config.ServiceConfig"
+  }],
   "hints": []
 }

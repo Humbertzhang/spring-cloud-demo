@@ -1,0 +1,6 @@
+META-INF/spring-configuration-metadata.json
+com/buygoods/priceservice/PriceServiceApplication.class
+com/buygoods/priceservice/services/PriceService.class
+com/buygoods/priceservice/controllers/PriceController.class
+com/buygoods/priceservice/models/Price.class
+com/buygoods/priceservice/config/ServiceConfig.class

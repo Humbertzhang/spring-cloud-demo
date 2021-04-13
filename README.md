@@ -4,9 +4,8 @@ My Spring Cloud learning demo
 使用的SpringCloud能力:
 * Spring Cloud Config 
 * Eureka & Ribbon & Feign 服务注册与发现以及相关接口调用
+* Hystrix: circuit breaker(断路器模式), fallback(后备模式), bulkhead(舱壁模式)
 
-TODO:
-* 服务熔断
 
 services:
 

@@ -1,0 +1,8 @@
+/Users/apple/Code/microservice-demos/h10gdemos/spring-cloud-demo/order-service/src/main/java/com/buygoods/orderservice/clients/InventoryFeignClient.java
+/Users/apple/Code/microservice-demos/h10gdemos/spring-cloud-demo/order-service/src/main/java/com/buygoods/orderservice/clients/PriceDiscoveryClient.java
+/Users/apple/Code/microservice-demos/h10gdemos/spring-cloud-demo/order-service/src/main/java/com/buygoods/orderservice/OrderServiceApplication.java
+/Users/apple/Code/microservice-demos/h10gdemos/spring-cloud-demo/order-service/src/main/java/com/buygoods/orderservice/models/Amount.java
+/Users/apple/Code/microservice-demos/h10gdemos/spring-cloud-demo/order-service/src/main/java/com/buygoods/orderservice/models/Orders.java
+/Users/apple/Code/microservice-demos/h10gdemos/spring-cloud-demo/order-service/src/main/java/com/buygoods/orderservice/controllers/OrderController.java
+/Users/apple/Code/microservice-demos/h10gdemos/spring-cloud-demo/order-service/src/main/java/com/buygoods/orderservice/models/Order.java
+/Users/apple/Code/microservice-demos/h10gdemos/spring-cloud-demo/order-service/src/main/java/com/buygoods/orderservice/services/OrderService.java
